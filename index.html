@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Master</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+
+    <div class="glass-container">
+        <!-- Setup Screen -->
+        <div class="setup-screen" id="setupScreen">
+            <h1 class="title">🧩 Sudoku Master</h1>
+
+            <div class="form-group">
+                <label class="form-label">Player Name</label>
+                <input type="text" class="form-input" id="playerName" placeholder="Enter your name..." maxlength="20">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Board Size</label>
+                <select class="form-select" id="boardSize">
+                    <option value="4">2x2 (4 cells)</option>
+                    <option value="9" selected>3x3 (9 cells) - Classic</option>
+                    <option value="16">4x4 (16 cells)</option>
+                    <option value="25">5x5 (25 cells)</option>
+                    <option value="36">6x6 (36 cells)</option>
+                    <option value="49">7x7 (49 cells)</option>
+                    <option value="64">8x8 (64 cells)</option>
+                    <option value="81">9x9 (81 cells) - Master</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Difficulty Level</label>
+                <div class="level-grid">
+                    <div class="level-option" data-level="easy">
+                        <div>🟢 Easy</div>
+                        <small>More numbers filled</small>
+                    </div>
+                    <div class="level-option selected" data-level="medium">
+                        <div>🟡 Medium</div>
+                        <small>Balanced challenge</small>
+                    </div>
+                    <div class="level-option" data-level="hard">
+                        <div>🔴 Hard</div>
+                        <small>Fewer clues</small>
+                    </div>
+                    <div class="level-option" data-level="superhard">
+                        <div>⚫ Super Hard</div>
+                        <small>Expert level</small>
+                    </div>
+
+                    <div class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</div>
+                </div>
+            </div>
+
+            <button class="start-btn" onclick="startGame()">🚀 Start Game</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div class="game-screen" id="gameScreen">
+            <div class="game-header">
+                <div class="player-info">
+                    <span id="playerDisplay"></span>
+                </div>
+                <div class="game-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="timeDisplay">00:00</div>
+                        <div>Time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="movesDisplay">0</div>
+                        <div>Moves</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="hintsDisplay">3</div>
+                        <div>Hints</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sudoku-grid">
+                <table class="sudoku-table" id="sudokuTable"></table>
+            </div>
+
+            <div class="number-pad" id="numberPad"></div>
+
+            <div class="game-controls">
+                <button class="control-btn" onclick="togglePause()" id="pauseBtn">⏸️ Pause</button>
+                <button class="control-btn" onclick="clearCell()">🗑️ Clear</button>
+                <button class="control-btn" onclick="getHint()">💡 Hint</button>
+                <button class="control-btn" onclick="checkSolution()">✅ Check</button>
+                <button class="control-btn" onclick="newGame()">🔄 New Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pause Modal -->
+    <div class="victory-modal" id="pauseModal">
+        <div class="victory-content">
+            <div class="victory-title">⏸️ Game Paused</div>
+            <div>Take a break! The timer is paused.</div>
+            <button class="start-btn" onclick="togglePause()" style="margin-top: 1rem;">▶️ Resume Game</button>
+        </div>
+    </div>
+
+    <!-- Victory Modal -->
+    <div class="victory-modal" id="victoryModal">
+        <div class="victory-content">
+            <div class="victory-title">🎉 Congratulations!</div>
+            <div id="victoryMessage"></div>
+            <button class="start-btn" onclick="newGame()" style="margin-top: 1rem;">Play Again</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
